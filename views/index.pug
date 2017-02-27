@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+html(lang="en")
+    head
+        meta(charset="UTF-8")
+        title Dialogs
+        link(href="/main.css" rel="stylesheet")
+    body
+        .content
+            .users
+                .users__title All users
+                ul.users__list
+                    li.users__user(v-for="user in users")
+                        span {{user._id}}
+                        span {{user.name}}
+                        span {{user.email}}
+                //- .chat__title Best chat
+                //- #dialog-list
+                //-     ul
+                //-         li.chat__message(v-for="user in users") {{message.text}}
+                form.users__form(v-on:submit.prevent="createUser")
+                     input(type="text" placeholder="Enter name" v-model="displayName")
+                     input(type="text" placeholder="Enter email" v-model="email")
+                     button Send message
+
+        script(src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.1.10/vue.js")
+        script(src="https://cdnjs.cloudflare.com/ajax/libs/vue-resource/1.2.0/vue-resource.js")
+        script(src="/main.js")

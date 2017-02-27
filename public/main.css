@@ -16,7 +16,7 @@ ul, li {
     margin: 0 auto;
 }
 
-.chat__title {
+.users__title {
     font-size: 20px;
     text-transform: uppercase;
     font-weight: bold;

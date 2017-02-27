@@ -22,27 +22,7 @@ handlers.forEach(handler => require('./handlers/' + handler).init(app));
 // ---------------------------------------
 
 // can be split into files too
-const Router = require('koa-router');
-
-const router = new Router();
-
-router.get('/',
-    async (ctx, next) => {
-      ctx.body = ctx.render('./templates/index.pug');
-    }
-);
-
-router.get('/subscribe',
-  async (ctx) => {
-    await ctx.subscribe();
-  }
-);
-
-router.post('/message',
-  async (ctx, next) => {
-    ctx.addMessage(ctx.request.body.message);
-  }
-);
+const router = require('./routes')
 
 app.use(router.routes());
 

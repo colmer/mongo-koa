@@ -12,6 +12,5 @@ exports.init = app => app.use(async (ctx, next) => {
       ctx.status = 500;
       console.error(e.message, e.stack);
     }
-
   }
 });

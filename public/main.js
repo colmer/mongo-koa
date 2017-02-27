@@ -1,7 +1,7 @@
 new Vue({
-    el: "#dialog-list",
+    el: ".users__list",
     data: {
-        messages: []
+        users: []
     },
     created: function () {
         this.fetchData()
@@ -10,39 +10,42 @@ new Vue({
         fetchData: function() {
             var self = this;
 
-            this.$http.get('/subscribe')
+            this.$http.get('/users')
                 .then(
                     function(response) {
-                        self.messages.push(response.body);
-                        self.fetchData();
+                        self.users = response.body;
                     }
                 )
                 .catch(function(e) {
                     console.log(e);
-                    setTimeout(self.fetchData, 2500);
                 });
         }
     }
 });
 
 new Vue({
-    el: '#dialog-form',
+    el: '.users__form',
     data: {
-        textMessage: ''
+        email: '',
+        displayName: ''
     },
     methods: {
-        sendMessage: function() {
+        createUser: function() {
             var self = this;
 
-            this.$http.post('/message', {message: this.textMessage})
-                .then(
-                    function() {
-                        self.textMessage = '';
-                    }
-                )
-                .catch(function (e) {
-                    console.log(e);
-                });
+            this.$http.post('/users', {
+                email: this.email,
+                displayName: this.displayName
+            })
+            .then(
+                function() {
+                    self.displayName = '';
+                    self.email = '';
+                }
+            )
+            .catch(function (e) {
+                console.log(e);
+            });
         }
     }
 });
