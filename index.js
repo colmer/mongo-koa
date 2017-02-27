@@ -26,4 +26,4 @@ const router = require('./routes')
 
 app.use(router.routes());
 
-app.listen(3000);
+app.listen(3002);

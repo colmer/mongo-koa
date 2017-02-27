@@ -10,9 +10,8 @@ html(lang="en")
                 .users__title All users
                 ul.users__list
                     li.users__user(v-for="user in users")
-                        span {{user._id}}
-                        span {{user.name}}
-                        span {{user.email}}
+                        a(v-bind:href="'/show/' + user._id") {{user.displayName}} {{user.email}}
+                        span.users__delete(@click="deleteUser(user._id)") X
                 //- .chat__title Best chat
                 //- #dialog-list
                 //-     ul
@@ -20,7 +19,7 @@ html(lang="en")
                 form.users__form(v-on:submit.prevent="createUser")
                      input(type="text" placeholder="Enter name" v-model="displayName")
                      input(type="text" placeholder="Enter email" v-model="email")
-                     button Send message
+                     button Create user
 
         script(src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.1.10/vue.js")
         script(src="https://cdnjs.cloudflare.com/ajax/libs/vue-resource/1.2.0/vue-resource.js")

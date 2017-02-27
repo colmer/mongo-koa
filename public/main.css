@@ -23,6 +23,15 @@ ul, li {
     margin-bottom: 10px;
 }
 
+.users__delete {
+    color: red;
+    margin-left: 10px;
+}
+
+.users__delete:hover {
+    cursor: pointer
+}
+
 .chat__message {
     list-style: none;
     padding: 10px 20px;

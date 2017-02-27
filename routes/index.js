@@ -8,11 +8,19 @@ router.get('/',
     }
 );
 
+router.get('/show/:id',
+    async (ctx, next) => {
+      ctx.body = ctx.render('./views/user.pug');
+    }
+);
+
 router.get('/users', users.index);
 
 router.get('/users/:id', users.show);
 
 router.delete('/users/:id', users.destroy);
+
+router.patch('/users/:id', users.update);
 
 router.post('/users', users.create);
 
