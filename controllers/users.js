@@ -6,14 +6,22 @@ const index = async (ctx, next) => {
 }
 
 const show = async (ctx, next) => {
-    let user = await User.findOne({_id: ctx.params.id});
-
-    if (user === null) {
-        ctx.status = 404;
-        ctx.body = 'Not found';
-    } else {
-        ctx.body = new User(user).getPublicFields();
-    }
+    let user = await User.findOne({_id: ctx.params.id})
+        .then(res => {
+            if (res.body === null) {
+                ctx.status = 404;
+                ctx.body = 'Not found';
+            } else {
+                ctx.body = res.getPublicFields();
+            }
+        })
+        .catch(e => {
+            if (e.name === 'CastError') {
+                console.log(e.name === 'CastError');
+                ctx.status = 404;
+                ctx.body = e.message;
+            }
+        });
 }
 
 const destroy = async (ctx, next) => {
